@@ -98,7 +98,7 @@ public class Motors{
 	private EV3MediumRegulatedMotor castMotorsToEV3MediumRegulatedMotors() {
 		return (EV3MediumRegulatedMotor) motor;
 	}
-	
+	//
 	public void setUpSyncMotor(Motors m2) {
 		if (motor.getClass() == EV3MediumRegulatedMotor.class) {
 			motor.synchronizeWith(new RegulatedMotor[] {m2.castMotorsToEV3MediumRegulatedMotors()});
