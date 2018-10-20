@@ -107,7 +107,7 @@ public class Motors{
 			motor.synchronizeWith(new RegulatedMotor[] {m2.castMotorsToEV3LargeRegulatedMotors()});
 		}
 		
-	}
+	}//
 	
 	public void startingSync() {
 		motor.startSynchronization();
