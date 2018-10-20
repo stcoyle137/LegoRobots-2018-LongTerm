@@ -7,7 +7,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.robotics.RegulatedMotor;
 
-//Samuel
+//Samuel = comment
 public class Motors{
 	//Defining ports
 	public static char A = 'a';
