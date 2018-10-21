@@ -15,19 +15,8 @@ public class MainClass {
 		Motors bML = new Motors(Motors.B, 'l');
 		Motors cML = new Motors(Motors.C, 'l');
 		MotorsSystem MS1 = new MotorsSystem(bML, cML);
-		MS1.RunInSync(1, -1);
+		MS1.RunInSyncForever(1, -1);
 		
-//		EV3LargeRegulatedMotor m1 = new EV3LargeRegulatedMotor(MotorPort.B);
-//		EV3LargeRegulatedMotor m2 = new EV3LargeRegulatedMotor(MotorPort.C);
-//		m1.synchronizeWith(new RegulatedMotor[] {m2});
-//		m1.startSynchronization();
-//		m1.setSpeed(10000);
-//		m2.setSpeed(10000);
-//		m1.forward();
-//		m2.forward();
-//		m1.endSynchronization();
-//		m1.waitComplete();
-//		m2.waitComplete();
 	}
 
 }

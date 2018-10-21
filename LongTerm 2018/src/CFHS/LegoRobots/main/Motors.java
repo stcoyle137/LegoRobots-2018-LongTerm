@@ -62,11 +62,11 @@ public class Motors{
 		
 	}
 	
-	public void TurnOnMotorsForDegrees(double percentOfSpeed) {
+	public void TurnOnMotorsForDegrees(double percentOfSpeed, int degreesToTurn) {
 		int speed = (int)(maxSpeed * Math.abs(percentOfSpeed));
 		if (percentOfSpeed == Math.abs(percentOfSpeed)) {
 			motor.setSpeed(speed);
-			motor.rotate(360, true);
+			motor.rotate(degreesToTurn, true);
 		}
 		else {
 			motor.setSpeed(speed);
