@@ -1,10 +1,9 @@
 package CFHS.LegoRobots.main;
 
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-import lejos.robotics.RegulatedMotor;
-import lejos.utility.Delay;
 import CFHS.LegoRobots.main.Motors;
+import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.hardware.port.Port;
+import lejos.hardware.port.SensorPort;
 
 public class MainClass {
 
@@ -16,6 +15,7 @@ public class MainClass {
 		Motors cML = new Motors(Motors.C, 'l');
 		MotorsSystem MS1 = new MotorsSystem(bML, cML);
 		MS1.RunInSyncForever(1, -1);
+		EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S1);
 		
 	}
 
