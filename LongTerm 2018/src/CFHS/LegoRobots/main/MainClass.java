@@ -10,9 +10,9 @@ public class MainClass {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Motors aMM = new Motors(Motors.A, 'm');
-		Motors bML = new Motors(Motors.B, 'l');
-		Motors cML = new Motors(Motors.C, 'l');
+		Motors aMM = new Motors(Motors.A, Motors.Medium);
+		Motors bML = new Motors(Motors.B, Motors.Large);
+		Motors cML = new Motors(Motors.C, Motors.Large);
 		MotorsSystem MS1 = new MotorsSystem(bML, cML);
 		MS1.RunInSyncForever(1, -1);
 		EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S1);
