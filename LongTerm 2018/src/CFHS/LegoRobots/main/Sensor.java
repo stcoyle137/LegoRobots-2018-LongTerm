@@ -9,7 +9,7 @@ interface Sensor{
 }
 private class Port{
 	public Port(int port);
-}
+} 
 class TouchSensor implements Sensor{
 	public TouchSensor(int port) {
 		Brick brick = BrickFinder.getDefault();
