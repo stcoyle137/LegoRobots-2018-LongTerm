@@ -10,10 +10,10 @@ public class MotorsSystem{
 	public MotorsSystem(Motors motor1, Motors motor2){
 		m1 = motor1;
 		m2 = motor2;
-		m1.setUpSyncMotor(m2);
 	}
 	
 	public void RunInSyncWithDegrees(double percentOfMotor1, int degreesOfMotor1, double percentOfMotor2, int degreesOfMotor2) {
+		m1.setUpSyncMotor(m2);
 		m1.startingSync();
 		m1.TurnOnMotorsForDegrees(percentOfMotor1, degreesOfMotor1);
 		m2.TurnOnMotorsForDegrees(percentOfMotor2, degreesOfMotor2);
@@ -23,11 +23,25 @@ public class MotorsSystem{
 	}
 	
 	public void RunInSyncForever(double percentOfMotor1, double percentOfMotor2) {
+		m1.setUpSyncMotor(m2);
 		m1.startingSync();
 		m1.TurnOnMotors(percentOfMotor1);
 		m2.TurnOnMotors(percentOfMotor2);
 		m1.stoppingSync();
 		m1.waitForFinish();
 		m2.waitForFinish();
+	}
+	
+	public double getMotor1Encoder() {
+		return m1.getEncoderValue(false);
+	}
+	
+	public double getMotor2Encoder() {
+		return m2.getEncoderValue(false);
+	}
+	
+	public void resetAllEncoder() {
+		m1.resetEncoder();
+		m2.resetEncoder();
 	}
 }

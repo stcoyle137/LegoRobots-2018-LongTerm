@@ -314,7 +314,6 @@ public class Motors{
 			//Ending the sync
 			motor.endSynchronization();
 			//Change state of class variable to start sync process again
-			this.changeSyncingState(false);
 			this.changeStateOfStartingSync(false);
 		}
 		//If the sync hasn't been set up this will tell user that

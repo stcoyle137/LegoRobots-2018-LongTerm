@@ -14,8 +14,10 @@ public class MainClass {
 		Motors bML = new Motors(Motors.B, Motors.Large);
 		Motors cML = new Motors(Motors.C, Motors.Large);
 		MotorsSystem MS1 = new MotorsSystem(bML, cML);
-		MS1.RunInSyncForever(1, -1);
-		EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S1);
+		aMM.TurnOnMotorsForDegrees(1, 180);
+		MS1.RunInSyncWithDegrees(1, 2000, 1, 2000);
+		
+//		EV3TouchSensor ts = new EdV3TouchSensor(SensorPort.S1);
 		
 	}
 
