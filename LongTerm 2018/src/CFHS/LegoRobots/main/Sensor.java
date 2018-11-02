@@ -8,7 +8,7 @@ interface Sensor{
 	public double getValue();
 }
 private class Port{
-	public Port(int port)
+	public Port(int port);
 }
 class TouchSensor implements Sensor{
 	public TouchSensor(int port) {
