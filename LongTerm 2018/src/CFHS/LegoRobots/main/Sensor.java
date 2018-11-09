@@ -8,19 +8,32 @@ interface Sensor{
 	public double getValue();
 }
 private class Port{
-	private SensorPort p;
+	private SensorPort port;
 	public Port(int port) {
 		switch (port) {
 		case 1:
-			p
+			port = SensorPort.S1;
+			break;
+		case 2:
+			port = SensorPort.S2;
+			break;
+		case 3:
+			port = SensorPort.S3;
+			break;
+		case 4:
+			port = SensorPort.S4;
+			break;
+		default:
+			System.out.print("Given port does not exist. Assuming 1")
+			port = SensorPort.S1;
 		}
+
 	};
 }
 class TouchSensor implements Sensor{
 	public TouchSensor(int port) {
-		Brick brick = BrickFinder.getDefault();
-	    lejos.hardware.port.Port  = brick.getPort("S4");
-		EV3TouchSensor = new EV3TouchSensor();
+		Port wPort = new Port(port);
+		EV3TouchSensor = new EV3TouchSensor(wPort);
 	}
 }
 class ColorSensor implements Sensor {
