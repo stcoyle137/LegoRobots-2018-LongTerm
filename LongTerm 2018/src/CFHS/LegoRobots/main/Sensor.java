@@ -12,10 +12,10 @@ private class Port{
 	public Port(int port) {
 		switch (port) {
 		case 1:
-			p 
+			p
 		}
 	};
-} 
+}
 class TouchSensor implements Sensor{
 	public TouchSensor(int port) {
 		Brick brick = BrickFinder.getDefault();
@@ -31,13 +31,13 @@ class ColorSensor implements Sensor {
 	public double getValue() {
 		return colorSensor.getColorID();
 	}
-}	
+}
 
 class GyroSensor implements Sensor {
 	private EV3GyroSensor gyroSensor;
 	private float[] sample;
 	private SampleProvider gyroReader;
-	
+
 	public GyroSensor (int port) {
 		gyroSensor = new EV3GyroSensor(null);
 		gyroSensor.reset();
