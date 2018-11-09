@@ -8,6 +8,7 @@ import lejos.robotics.SampleProvider;
 
 import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
+import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.*;
 
 interface Sensor{
@@ -15,11 +16,11 @@ interface Sensor{
 }
 
 
-class TouchSensor implements Sensor{
-	public TouchSensor (int port) {
-		
-	}
-}
+//class TouchSensor implements Sensor{
+//	public TouchSensor (int port) {
+//		
+//	}
+//}
 
 class ColorSensor implements Sensor {
 	private EV3ColorSensor colorSensor;
@@ -49,32 +50,33 @@ class GyroSensor implements Sensor {
 }
 
 private class Port{
-	private SensorPort port;
+	private SensorPort portSensor;
 	public Port(int port) {
 		switch (port) {
 		case 1:
-			port = SensorPort.S1;
+			portSensor = SensorPort.S1;
 			break;
 		case 2:
-			port = SensorPort.S2;
+			portSensor = SensorPort.S2;
 			break;
 		case 3:
-			port = SensorPort.S3;
+			portSensor = (SensorPort) SensorPort.S3;
 			break;
 		case 4:
-			port = SensorPort.S4;
+			portSensor = SensorPort.S4;
 			break;
 		default:
 			System.out.print("Given port does not exist. Assuming 1")
-			port = SensorPort.S1;
+			portSensor = SensorPort.S1;
 		}
 
 	};
 }
 class TouchSensor implements Sensor{
+	private EV3TouchSensor touch;
 	public TouchSensor(int port) {
 		Port wPort = new Port(port);
-		EV3TouchSensor = new EV3TouchSensor(wPort);
+		touch = new EV3TouchSensor(wPort);
 	}
 }
 class ColorSensor implements Sensor {
