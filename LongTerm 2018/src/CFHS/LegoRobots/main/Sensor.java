@@ -5,7 +5,6 @@ import java.lang.reflect.Array;
 import lejos.hardware.sensor.*;
 import lejos.robotics.SampleProvider;
 
-//please work
 
 interface Sensor{
 	public double getValue();
