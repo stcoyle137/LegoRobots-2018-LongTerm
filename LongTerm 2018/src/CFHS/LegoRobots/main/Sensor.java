@@ -1,10 +1,7 @@
 package CFHS.LegoRobots.main;
 
-import java.lang.reflect.Array;
-
 import lejos.hardware.sensor.*;
 import lejos.robotics.SampleProvider;
-import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
 
 interface Sensor{
