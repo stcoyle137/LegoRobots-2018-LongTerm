@@ -121,4 +121,9 @@ public class Robot {
 		motorSystems[whichSystemOn] = new MotorsSystem(motors[changeToNumberPort(portOfMotor1)], motors[changeToNumberPort(portOfMotor2)]);
 		whichSystemOn ++;
 	}
+	
+	public void runMotorForASensorCondition(char motorPort, int sensorPort, double condition) {
+		Thread motorRunner;
+		Thread snesorRunner
+	}
 }

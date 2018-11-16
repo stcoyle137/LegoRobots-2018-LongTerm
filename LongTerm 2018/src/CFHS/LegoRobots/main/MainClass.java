@@ -1,11 +1,7 @@
 package CFHS.LegoRobots.main;
 
 import CFHS.LegoRobots.main.Motors;
-import lejos.hardware.sensor.EV3ColorSensor;
-import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.robotics.Color;
-import lejos.hardware.port.Port;
-import lejos.hardware.port.SensorPort;
 
 public class MainClass {
 
@@ -29,8 +25,6 @@ public class MainClass {
 					cML.TurnOnMotors(.75);
 				}
 		}
-		
-		//	EV3TouchSensor ts = new EdV3TouchSensor(SensorPort.S1);
 		
 	}
 
