@@ -2,9 +2,45 @@ package CFHS.LegoRobots.main;
 
 import lejos.hardware.sensor.*;
 import lejos.robotics.SampleProvider;
-import lejos.hardware.BrickFinder;
 
-interface Sensor{
+import lejos.hardware.BrickFinder;
+class ParmeterNotInRange extends Exception {
+
+	public ParmeterNotInRange() {}
+
+	public ParmeterNotInRange(String message) {
+		super(message);
+	}
+}
+
+public class Sensor implements SensorInter{
+	SensorInter sensor;
+	public Sensor(char Type, int port) throws ParmeterNotInRange {
+		switch(Type) {
+		case 't':
+			sensor = new TouchSensor(port);
+			break;
+		case 'c':
+			sensor = new ColorSensor(port);
+			break;
+		case 'g':
+			sensor = new GyroSensor(port);
+			break;
+		default:
+			throw new ParmeterNotInRange("The Sensor type is not one of the following: t, l, or g");
+		}
+	}
+	public double getValue() {
+		return sensor.getValue();
+	}
+	public String getPort() {
+		return sensor.getPort();
+	}
+	
+}
+	
+
+interface SensorInter{
 	public double getValue();
 	public String getPort();
 }
@@ -12,7 +48,7 @@ interface Sensor{
 class PortForSensors{
 	private lejos.hardware.port.Port port;
 	private String whichPort;
-	public PortForSensors(int portPlace) {
+	public PortForSensors(int portPlace) throws ParmeterNotInRange {
 		switch (portPlace) {
 			case 1:
 				whichPort = "S1";
@@ -31,8 +67,7 @@ class PortForSensors{
 				break;
 		
 			default:
-				System.out.print("Given port does not exist. Assuming 1");
-				whichPort = "S1";
+				throw new ParmeterNotInRange("The port is not in range of the following: 1-4");
 			}
 		port = BrickFinder.getDefault().getPort(whichPort);
 	}
@@ -46,13 +81,13 @@ class PortForSensors{
 	}
 
 }
-class TouchSensor implements Sensor{
+class TouchSensor implements SensorInter{
 	private EV3TouchSensor touchSensor;
 	private PortForSensors wPort;
 	private SensorMode touch;
 	private float[] sample;
 	
-	public TouchSensor(int port) {
+	public TouchSensor(int port) throws ParmeterNotInRange {
 		wPort = new PortForSensors(port);
 		touchSensor = new EV3TouchSensor(wPort.getPort());
 		touch = touchSensor.getTouchMode();
@@ -68,10 +103,10 @@ class TouchSensor implements Sensor{
 		return wPort.getPortString();
 	}
 }
-class ColorSensor implements Sensor {
+class ColorSensor implements SensorInter {
 	private EV3ColorSensor colorSensor;
 	private PortForSensors wPort;
-	public ColorSensor (int port) {
+	public ColorSensor (int port) throws ParmeterNotInRange {
 		wPort = new PortForSensors(port);
 		colorSensor = new EV3ColorSensor(wPort.getPort());
 	}
@@ -84,13 +119,13 @@ class ColorSensor implements Sensor {
 	}
 }
 
-class GyroSensor implements Sensor {
+class GyroSensor implements SensorInter {
 	private EV3GyroSensor gyroSensor;
 	private float[] sample;
 	private SampleProvider gyroReader;
 	private PortForSensors wPort;
 	
-	public GyroSensor (int port) {
+	public GyroSensor (int port) throws ParmeterNotInRange {
 		wPort = new PortForSensors(port);
 		gyroSensor = new EV3GyroSensor(wPort.getPort());
 		gyroSensor.reset();
