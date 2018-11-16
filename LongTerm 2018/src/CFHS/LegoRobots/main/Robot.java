@@ -124,6 +124,6 @@ public class Robot {
 	
 	public void runMotorForASensorCondition(char motorPort, int sensorPort, double condition) {
 		Thread motorRunner;
-		Thread snesorRunner
+		Thread sensorRunner;
 	}
 }
