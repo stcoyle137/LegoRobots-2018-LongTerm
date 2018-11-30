@@ -1,9 +1,5 @@
 package CFHS.LegoRobots.main;
 
-import java.util.ArrayList;
-
-import CFHS.LegoRobots.main.*;
-
 public class Robot {
 	private Sensor[] sensors = new Sensor[4];
 	private Motors[] motors = new Motors[4];
@@ -110,8 +106,4 @@ public class Robot {
 			motorSystem.StopSyncMotors();
 		}
 	}
-//	public void runMotorForASensorCondition(char motorPort, int sensorPort, double condition) {
-//		Thread motorRunner;
-//		Thread sensorRunner;
-//	}
 }

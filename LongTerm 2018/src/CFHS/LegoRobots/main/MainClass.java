@@ -11,18 +11,10 @@ public class MainClass {
 	
 	public static void main(String[] args) {
 		Robot r1 = new Robot("ttte","llle");
-		r1.runMotorDegrees('a', 225, -1);
-//		r1.runMotorDegrees('a', 360, -1);
 		r1.setUpMotorSystem('b', 'c');
-		int runningMotor = 0;
+		r1.runSyncMotor(.3, .3);
 		
 		while(true) {
-			if(r1.getValueForSensor(1) == 1) {
-				r1.runSyncMotor(.3, .3);
-			}
-			else {
-				r1.stopSyncMotor();
-			}
 			if(r1.getValueForSensor(2) == 1) {
 				r1.TurnOnMotor('a', -1);
 			}
