@@ -1,75 +1,44 @@
 package CFHS.LegoRobots.main;
 
+import java.util.ArrayList;
+
 import CFHS.LegoRobots.main.*;
 
 public class Robot {
-	private char[] sensorsChar;
-	private char[] motorsChar;
-	private Sensor[] sensors;
-	private Motors[] motors;
-	private MotorsSystem[] motorSystems;
-	private int whichSystemOn = 0;
+	private Sensor[] sensors = new Sensor[4];
+	private Motors[] motors = new Motors[4];
+	private MotorsSystem motorSystem;
 	/**
-	 * @param sensorList a list of sensor with [0] being port 1. Used charators
+	 * @param sensors is a string with length of 4 Used charators for sensors
 	 * 'e' for a empty port
 	 * 't' for a touch sensor
 	 * 'c' for a color sensor
 	 * 'g' for a gyro sensor
-	 * @param motorList a list of motors with [0] being port a Use charators
+	 * @param Used charators for motors
 	 * 'e' for a empty port
 	 * 'm' for a medium motor
 	 * 'l' for a large motor
 	 */
-	public Robot(char[] sensorList, char[] motorList) {
+	public Robot(String sensor, String motor) {
 		try {
-			while (motorsChar.length == 0) {
-				if (motorList.length < 4) {
-					motorList[(motorList.length + 2)] = 'e';
-				}
-				else if (motorList.length > 4) {
-					int i = 0;
-					while(i < 4) {
-						motorsChar[i] = motorList[i];
-						i++;
-					}
-				}
-				else {
-					motorsChar = motorList;
-				}
+			while(sensor.length() < 4) {
+				sensor += "e";
 			}
-		
-			while (sensorsChar.length == 0) {
-				if (sensorList.length < 4) {
-					sensorList[(sensorList.length)] = 'e';
-				}
-				else if (sensorList.length > 4) {
-					int i = 0;
-					while(i < 4) {
-						sensorsChar[i] = sensorList[i];
-						i++;
-					}
-				}
-				else {
-					sensorsChar = sensorList;
-				}
+			
+			while(motor.length() < 4) {
+				motor += "e";
 			}
-		
+			
 			int counter = 0;
 			while (counter < 4) {
-				if (sensorsChar[counter] != 'e') {
-					sensors[counter] = new Sensor(sensorsChar[counter], counter + 1);
-				}
-				else {
-					sensors[counter] = null;
+				if (sensor.charAt(counter) != 'e') {
+					sensors[counter] = new Sensor(sensor.charAt(counter), counter + 1);
 				}
 			
-				if (motorsChar[counter] != 'e') {
-					motors[counter] = new Motors(motorsChar[counter], changeToLetterPort(counter + 1));
+				if (motor.charAt(counter) != 'e') {
+					motors[counter] = new Motors(motor.charAt(counter), changeToLetterPort(counter + 1));
 				}
-				else {
-					motors[counter] = null;
-			
-				}
+				counter ++;
 			}
 		}
 		catch (ParmeterNotInRange e){
@@ -113,17 +82,36 @@ public class Robot {
 		 motors[changeToNumberPort(port)].TurnOnMotorsForDegrees(speed, degrees);
 	}
 	
+	public void TurnOnMotor(char port, double speed) {
+		 motors[changeToNumberPort(port)].TurnOnMotors(speed);
+	}
+	
+	public void StopMotor(char port) {
+		motors[changeToNumberPort(port)].stopMotor();
+	}
+	
 	public double getValueForSensor(int port) {
 		return sensors[port - 1].getValue();
 	}
 	
 	public void setUpMotorSystem(char portOfMotor1, char portOfMotor2) {
-		motorSystems[whichSystemOn] = new MotorsSystem(motors[changeToNumberPort(portOfMotor1)], motors[changeToNumberPort(portOfMotor2)]);
-		whichSystemOn ++;
+		if(motorSystem == null) {	
+			motorSystem = new MotorsSystem(motors[changeToNumberPort(portOfMotor1)], motors[changeToNumberPort(portOfMotor2)]);
+		}
 	}
 	
-	public void runMotorForASensorCondition(char motorPort, int sensorPort, double condition) {
-		Thread motorRunner;
-		Thread sensorRunner;
+	public void runSyncMotor(double powerOfMotor1, double powerOfMotor2) {
+		if(motorSystem != null) {
+			motorSystem.TurnOnSyncMotors(powerOfMotor1, powerOfMotor2);
+		}
 	}
+	public void stopSyncMotor() {
+		if(motorSystem != null) {
+			motorSystem.StopSyncMotors();
+		}
+	}
+//	public void runMotorForASensorCondition(char motorPort, int sensorPort, double condition) {
+//		Thread motorRunner;
+//		Thread sensorRunner;
+//	}
 }

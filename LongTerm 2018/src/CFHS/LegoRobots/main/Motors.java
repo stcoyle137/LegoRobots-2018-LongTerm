@@ -26,7 +26,7 @@ public class Motors{
 	private boolean isSyncing = false;
 	private boolean hasSyncStarted = false;
 	
-	public Motors(char port, char size) {
+	public Motors( char size, char port) {
 		/**
 		 * The port is represent by the Lower case letters a b c d but there are const variable in motor declared above to use
 		 * The size with l and m and with m as small motor and l as large but there are const variable in motor declared above to use
@@ -56,7 +56,7 @@ public class Motors{
 		
 		//Default for port will be a and then it will tell user Port that was given is wrong
 		default :
-			System.out.println("Given Port does not exist.");
+			System.out.println("Given Port does not exist: " + port);
 			System.out.println("Giving default port of A");
 			whichPort = MotorPort.A;
 			break;
@@ -78,7 +78,7 @@ public class Motors{
 		else {
 			//This is the default if size inputed doesn't match the two sizes
 			//It will also set the speed to Large and Size to Large
-			System.out.println("Given Size does not exist");
+			System.out.println("Given Size does not exist: " + size);
 			System.out.println("Giving a default value of Large");
 			motor = new EV3LargeRegulatedMotor(whichPort);
 			maxSpeed = maxLargeSpeed;
@@ -91,12 +91,17 @@ public class Motors{
 		 * Percent must be in the range 1 <-> -1
 		 */
 		//The if else statement is to make sure the percent of speed is not high that 100%
-		if (percentOfSpeed <= 1 && percentOfSpeed >= -1) {
+		if (Math.abs(percentOfSpeed) <= 1) {
 			//Setting speed to a percent of max speed
 			//Also Turn the motor ON
 			int speed = (int)(maxSpeed * percentOfSpeed);
 			motor.setSpeed(speed);
-			motor.forward();
+			if(percentOfSpeed == Math.abs(percentOfSpeed)) {
+				motor.forward();
+			}
+			else {
+				motor.backward();
+			}
 		}
 		else {
 			//Since the percent cannot be high that 100 %, So motor will not be turn on
@@ -135,6 +140,7 @@ public class Motors{
 				//Make sure the degrees are negtive, this statement is turn on motor
 				motor.rotate(-Math.abs(degreesToTurn), true);
 			}
+			motor.waitComplete();
 		}
 		else {
 			
@@ -288,7 +294,7 @@ public class Motors{
 		 */
 		
 		//This if statement will tell if sync has been set up 
-		if(isSyncing) {
+		if(isSyncing && !hasSyncStarted) {
 			
 			//Starting the sync
 			motor.startSynchronization();

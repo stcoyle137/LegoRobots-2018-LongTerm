@@ -15,8 +15,8 @@ class ParmeterNotInRange extends Exception {
 
 public class Sensor implements SensorInter{
 	SensorInter sensor;
-	public Sensor(char Type, int port) throws ParmeterNotInRange {
-		switch(Type) {
+	public Sensor(char type, int port) throws ParmeterNotInRange {
+		switch(type) {
 		case 't':
 			sensor = new TouchSensor(port);
 			break;
