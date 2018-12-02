@@ -11,7 +11,7 @@ public class MotorsSystem{
 		m1.setUpSyncMotor(m2);
 	}
 	
-	public void RunInSyncWithDegrees(double percentOfMotor1, int degreesOfMotor1, double percentOfMotor2, int degreesOfMotor2) {
+	public void runInSyncWithDegrees(double percentOfMotor1, int degreesOfMotor1, double percentOfMotor2, int degreesOfMotor2) {
 		m1.startingSync();
 		m1.TurnOnMotorsForDegrees(percentOfMotor1, degreesOfMotor1);
 		m2.TurnOnMotorsForDegrees(percentOfMotor2, degreesOfMotor2);
@@ -20,14 +20,14 @@ public class MotorsSystem{
 		m2.waitForFinish();
 	}
 	
-	public void TurnOnSyncMotors(double percentOfMotor1, double percentOfMotor2) {
+	public void turnOnSyncMotors(double percentOfMotor1, double percentOfMotor2) {
 		m1.startingSync();
 		m1.TurnOnMotors(percentOfMotor1);
 		m2.TurnOnMotors(percentOfMotor2);
 		m1.stoppingSync();
 	}
 	
-	public void StopSyncMotors() {
+	public void stopSyncMotors() {
 		m1.startingSync();
 		m1.stopMotor();
 		m2.stopMotor();

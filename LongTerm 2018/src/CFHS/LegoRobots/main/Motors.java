@@ -19,8 +19,8 @@ public class Motors{
 	//Defining Class variable that will be use only inside the object  
 	private RegulatedMotor motor;
 	private Port whichPort;
-	private final int maxLargeSpeed = 59400;
-	private final int maxMediumSpeed = 84600;
+	private final int maxLargeSpeed = 835;
+	private final int maxMediumSpeed = 1238;
 	private int maxSpeed;
 	private char sizeOfMotor;
 	private boolean isSyncing = false;

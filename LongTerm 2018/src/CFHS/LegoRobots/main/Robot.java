@@ -78,11 +78,11 @@ public class Robot {
 		 motors[changeToNumberPort(port)].TurnOnMotorsForDegrees(speed, degrees);
 	}
 	
-	public void TurnOnMotor(char port, double speed) {
+	public void turnOnMotor(char port, double speed) {
 		 motors[changeToNumberPort(port)].TurnOnMotors(speed);
 	}
 	
-	public void StopMotor(char port) {
+	public void stopMotor(char port) {
 		motors[changeToNumberPort(port)].stopMotor();
 	}
 	
@@ -98,12 +98,12 @@ public class Robot {
 	
 	public void runSyncMotor(double powerOfMotor1, double powerOfMotor2) {
 		if(motorSystem != null) {
-			motorSystem.TurnOnSyncMotors(powerOfMotor1, powerOfMotor2);
+			motorSystem.turnOnSyncMotors(powerOfMotor1, powerOfMotor2);
 		}
 	}
 	public void stopSyncMotor() {
 		if(motorSystem != null) {
-			motorSystem.StopSyncMotors();
+			motorSystem.stopSyncMotors();
 		}
 	}
 }
