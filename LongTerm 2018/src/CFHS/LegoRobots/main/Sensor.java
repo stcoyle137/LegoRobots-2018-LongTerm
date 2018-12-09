@@ -36,13 +36,16 @@ public class Sensor implements SensorInter{
 	public String getPort() {
 		return sensor.getPort();
 	}
-	
+	public void reset() {
+		sensor.reset();
+	}
 }
 	
 
 interface SensorInter{
 	public double getValue();
 	public String getPort();
+	public void reset();
 }
 
 class PortForSensors{
@@ -102,6 +105,10 @@ class TouchSensor implements SensorInter{
 	public String getPort() {
 		return wPort.getPortString();
 	}
+	
+	public void reset() {
+		
+	}
 }
 class ColorSensor implements SensorInter {
 	private EV3ColorSensor colorSensor;
@@ -117,6 +124,9 @@ class ColorSensor implements SensorInter {
 	public String getPort() {
 		return wPort.getPortString();
 	}
+	public void reset() {
+		
+	}
 }
 
 class GyroSensor implements SensorInter {
@@ -128,7 +138,6 @@ class GyroSensor implements SensorInter {
 	public GyroSensor (int port) throws ParmeterNotInRange {
 		wPort = new PortForSensors(port);
 		gyroSensor = new EV3GyroSensor(wPort.getPort());
-		gyroSensor.reset();
 		gyroReader = gyroSensor.getAngleMode();
 		sample = new float[gyroReader.sampleSize()];
 	}
@@ -140,5 +149,8 @@ class GyroSensor implements SensorInter {
 	
 	public String getPort() {
 		return wPort.getPortString();
+	}
+	public void reset() {
+		gyroSensor.reset();
 	}
 }
