@@ -101,9 +101,17 @@ public class Robot {
 			motorSystem.turnOnSyncMotors(powerOfMotor1, powerOfMotor2);
 		}
 	}
+	public void runSyncMotorDegrees(double powerOfMotor1, int degreesOfMotor1, double powerOfMotor2, int degreesOfMotor2) {
+		if(motorSystem != null) {
+			motorSystem.runInSyncWithDegrees(powerOfMotor1, degreesOfMotor1, powerOfMotor2, degreesOfMotor2);
+		}
+	}
 	public void stopSyncMotor() {
 		if(motorSystem != null) {
 			motorSystem.stopSyncMotors();
 		}
+	}
+	public void resetSensor(int port) {
+		sensors[port - 1].reset();		
 	}
 }

@@ -5,42 +5,34 @@ import lejos.robotics.Color;
 
 public class MainClass {
 
-	public static Robot r1 = new Robot("ecte","llle");
-	public static boolean setUp = false;
+	public static Robot r1 = new Robot("gcte","llle");
 
 	public static void main(String[] args) {
-		r1.setUpMotorSystem('b', 'c');
 		while(r1.getValueForSensor(2) != Color.BLUE) {
 			greenTapeFollow();
 		}
-		r1.runSyncMotor(.5, -.5);
-		Delay.msDelay(1000);
-		while(true) {
+		r1.runSyncMotorDegrees(-.5, 115, -.5, 115);
+		turnClockwise(90);
+		while(r1.getValueForSensor(2) != Color.GREEN) {
 			blueTapeFollow();
 		}
 	}
 	
 	public static void oneBoard() {
-		if(!setUp) {
-			r1.setUpMotorSystem('b', 'c');
-			setUp = true;
-		}
+		r1.setUpMotorSystem('b', 'c');
 		r1.runSyncMotor(.4, .4);
 		while(true) {
 			if(r1.getValueForSensor(3) == 1) {
-				r1.runMotorDegrees('a', 540*5, -.5);
+				r1.runMotorDegrees('a', 225*5, -.5);
 				r1.stopSyncMotor();
-				r1.runMotorDegrees('a', 180*5, -.5);
+				r1.runMotorDegrees('a', 135*5, -.5);
 				break;
 			}
 		}
 	}
 	
 	public static void rampWithGap() {
-		if(!setUp) {
-			r1.setUpMotorSystem('b', 'c');
-			setUp = true;
-		}
+		r1.setUpMotorSystem('b', 'c');
 		r1.runSyncMotor(.4, .4);
 		while(true) {
 			if(r1.getValueForSensor(3) == 1) {
@@ -56,10 +48,7 @@ public class MainClass {
 	}
 	
 	public static void pyramid() {
-		if(!setUp) {
-			r1.setUpMotorSystem('b', 'c');
-			setUp = true;
-		}
+		r1.setUpMotorSystem('b', 'c');
 		r1.runSyncMotor(.4, .4);
 		while(true) {
 			if(r1.getValueForSensor(3) == 1) {
@@ -74,10 +63,10 @@ public class MainClass {
 	public static void blueTapeFollow() {
 		r1.setUpMotorSystem('b', 'c');
 		if(r1.getValueForSensor(2) == Color.BLUE) {
-			r1.runSyncMotor(.4, .2);
+			r1.runSyncMotor(.2, .4);
 		}
 		else {
-			r1.runSyncMotor(.2, .4);
+			r1.runSyncMotor(.4, .2);
 		}
 	}
 	
@@ -88,6 +77,13 @@ public class MainClass {
 		}
 		else {
 			r1.runSyncMotor(.2, .4);
+		}
+	}
+	
+	public static void turnClockwise(int degrees) {
+		r1.setUpMotorSystem('b', 'c');
+		while(r1.getValueForSensor(1) != -degrees) {
+			r1.runSyncMotor(.3, -.3);
 		}
 	}
 }

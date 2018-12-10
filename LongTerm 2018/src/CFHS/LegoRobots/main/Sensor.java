@@ -5,6 +5,7 @@ import lejos.robotics.SampleProvider;
 
 import lejos.hardware.BrickFinder;
 class ParmeterNotInRange extends Exception {
+	private static final long serialVersionUID = 1L;
 
 	public ParmeterNotInRange() {}
 
@@ -131,7 +132,6 @@ class ColorSensor implements SensorInter {
 
 class GyroSensor implements SensorInter {
 	private EV3GyroSensor gyroSensor;
-	private float[] sample;
 	private SampleProvider gyroReader;
 	private PortForSensors wPort;
 	
@@ -139,11 +139,11 @@ class GyroSensor implements SensorInter {
 		wPort = new PortForSensors(port);
 		gyroSensor = new EV3GyroSensor(wPort.getPort());
 		gyroReader = gyroSensor.getAngleMode();
-		sample = new float[gyroReader.sampleSize()];
 	}
 	
 	public double getValue() {
-		gyroSensor.fetchSample(sample, 0);
+		float[] sample = new float[gyroReader.sampleSize()];
+		gyroReader.fetchSample(sample, 0);
 		return sample[0];
 	}
 	
